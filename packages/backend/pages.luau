@@ -15,7 +15,7 @@ return {
         return {
             status = 200,
 			headers = {
-				["Content-Type"] = "text/html; charset=utf-8",
+				["Content-Type"] = "application/javascript; charset=utf-8",
 			},
 			body = fs.readFile("packages/frontend/build/element/guiObject.js"),
         }
