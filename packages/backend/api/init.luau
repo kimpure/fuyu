@@ -4,7 +4,7 @@ local serde = require('@lune/serde')
 local element = require('@self/element')
 
 return {
-    ['/api/rbxm/gui-object'] = function(request: net.ServeRequest)
+    ['/api/rbxm/gui-object'] = function(request)
         return {
             status = 200,
 			headers = {
@@ -13,4 +13,4 @@ return {
 			body = serde.encode('json', element.guiObjectElement.create(roblox.deserializeModel(request.body)[1] :: any)),
         }
     end,
-}
+} :: { [string]: (request: net.ServeRequest) -> net.ServeResponse }
