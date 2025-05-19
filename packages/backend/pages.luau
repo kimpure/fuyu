@@ -11,22 +11,23 @@ return {
 			body = fs.readFile("packages/frontend/index.html"),
         }
     end,
-    ['/build/index.js'] = function(request: net.ServeRequest) 
+    ['/build'] = function(request: net.ServeRequest)
+        local contentType = 'text/html'
+
+        if string.match(request.path, '.js') then
+            contentType = 'application/javascript'
+        end
+
+        if string.match(request.path, '.css') then
+            contentType = 'application/css'
+        end
+
         return {
             status = 200,
 			headers = {
-				["Content-Type"] = "application/javascript; charset=utf-8",
+				["Content-Type"] = `{contentType}; charset=utf-8`,
 			},
-			body = fs.readFile("packages/frontend/build/index.js"),
+			body = fs.readFile("packages/frontend/" .. request.path),
         }
-    end,
-    ['/build/element/guiObject.js'] = function(request: net.ServeRequest) 
-        return {
-            status = 200,
-			headers = {
-				["Content-Type"] = "application/javascript; charset=utf-8",
-			},
-			body = fs.readFile("packages/frontend/build/element/guiObject.js"),
-        }
-    end,
-}
+    end
+} :: { [string]: (request: net.ServeRequest) -> net.ServeResponse }
