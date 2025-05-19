@@ -1,5 +1,5 @@
-import { RbxElement } from "./index.js";
-import { color, udim } from './style.js'
+import { RbxElement } from "./index";
+import { color, udim } from './style'
 
 export type GuiObject = {
     active: boolean,

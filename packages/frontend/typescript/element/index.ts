@@ -1,4 +1,4 @@
-export const renderElement = document.querySelector('.render') as HTMLDivElement;
+const renderElement = document.querySelector('.render') as HTMLDivElement;
 
 export class RbxElement {
     element: HTMLDivElement;
@@ -11,6 +11,6 @@ export class RbxElement {
     };
 
     render() {
-        renderElement.appendChild(this.element as Node);
+        renderElement.appendChild(this.element);
     };
 };

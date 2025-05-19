@@ -1,4 +1,4 @@
-export function initRenderStyle() {
+export default function initRenderStyle() {
     const render = document.querySelector('.render') as HTMLDivElement;
     render.style.height = '100%';
     render.style.width = '100%';

@@ -1,4 +1,5 @@
-import { initRenderStyle } from "./render.js";
+import initComponentsStyle from "./components/index";
+import initRenderStyle from "./render";
 
 export function initStyle() {
     const html = document.querySelector('html') as HTMLElement;
@@ -15,4 +16,5 @@ export function initStyle() {
     body.style.padding = '0';
 
     initRenderStyle();
+    initComponentsStyle();
 };

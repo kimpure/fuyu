@@ -21,6 +21,11 @@ return {
         if string.match(request.path, '.css') then
             contentType = 'application/css'
         end
+
+        if contentType == 'text/html' and (not string.match(request.path, '.html')) then
+            request.path ..= '.js'
+            contentType = 'application/javascript'
+        end
         
         return {
             status = 200,
