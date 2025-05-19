@@ -23,9 +23,9 @@ export class Component {
 
             x1 = e.clientX;
             y1 = e.clientY;
-            
+
             element.style.top = `${element.offsetTop - y2}px`;
-            element.style.left = `${element.offsetLeft - y2}px`;
+            element.style.left = `${element.offsetLeft - x2}px`;
         };
 
         const removeEvent = () => {
