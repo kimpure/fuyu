@@ -1,4 +1,4 @@
-const components = document.querySelector('.components') as HTMLBodyElement
+const body = document.querySelector('body') as HTMLBodyElement
 
 export class Component {
     element: HTMLDivElement;
@@ -47,6 +47,6 @@ export class Component {
             this.initWindowMovement();
         };
         
-        components.appendChild(this.element);
+        body.appendChild(this.element);
     };
 };

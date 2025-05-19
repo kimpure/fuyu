@@ -1,4 +1,3 @@
-import initComponentsStyle from "./components/index";
 import initRenderStyle from "./render";
 
 export function initStyle() {
@@ -16,5 +15,4 @@ export function initStyle() {
     body.style.padding = '0';
 
     initRenderStyle();
-    initComponentsStyle();
 };
