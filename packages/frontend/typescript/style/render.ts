@@ -1,5 +1,7 @@
 export default function initRenderStyle() {
     const render = document.querySelector('.render') as HTMLDivElement;
+
+    render.style.position = 'relative';
     render.style.height = '100%';
     render.style.width = '100%';
     render.style.margin = '0';
