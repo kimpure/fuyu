@@ -1,6 +1,7 @@
-import { RbxElement } from "./index";
+import { RbxElement } from "./index.js";
+import { color, udim } from './style.js'
 
-export type GuiObjectElementProps = {
+export type GuiObject = {
     active: boolean,
     anchordPoint: {
         x: number,
@@ -47,50 +48,49 @@ export type GuiObjectElementProps = {
 }
 
 export class GuiObjectElement extends RbxElement {
-    elementProps: GuiObjectElementProps;
+    guiObject: GuiObject;
 
-    constructor(elementProps: GuiObjectElementProps) {
+    constructor(guiObject: GuiObject) {
         super();
-        this.elementProps = elementProps;
+        this.guiObject = guiObject;
     };
 
     applyStyle() {
-        switch (this.elementProps.sizeConstraint) {
+        switch (this.guiObject.sizeConstraint) {
             case 'RelativeXX':
-                this.element.style.aspectRatio = `${this.elementProps.size.x.scale} / ${this.elementProps.size.y.scale}`;
+                this.element.style.aspectRatio = `${this.guiObject.size.x.scale} / ${this.guiObject.size.y.scale}`;
                 break;
         
             case 'RelativeYY':
-                this.element.style.aspectRatio = `${this.elementProps.size.y.scale} / ${this.elementProps.size.x.scale}`;
+                this.element.style.aspectRatio = `${this.guiObject.size.y.scale} / ${this.guiObject.size.x.scale}`;
                 break;
 
             default:
                 break;
         };
-
-        this.element.style.backgroundColor = `rgb(${this.elementProps.backgroundColor.r}, ${this.elementProps.backgroundColor.g}, ${this.elementProps.backgroundColor.b})`;
-        
-        switch (this.elementProps.borderMode) {
+            
+        switch (this.guiObject.borderMode) {
             case 'Inset':
-                this.element.style.boxShadow = `inset 0 0 0 ${this.elementProps.borderSize}px rgb(${this.elementProps.borderColor.r}, ${this.elementProps.borderColor.g}, ${this.elementProps.borderColor.b})`;
+                this.element.style.boxShadow = `inset 0 0 0 ${color(this.guiObject.borderColor)}`;
                 break;
         
             case 'Outline':
-                this.element.style.boxShadow = `0 0 0 ${this.elementProps.borderSize}px rgb(${this.elementProps.borderColor.r}, ${this.elementProps.borderColor.g}, ${this.elementProps.borderColor.b})`;
+                this.element.style.boxShadow = `0 0 0 ${color(this.guiObject.borderColor)}`;
                 break;
 
             default:
-                this.element.style.boxShadow = `0 0 0 ${this.elementProps.borderSize}px rgb(${this.elementProps.borderColor.r}, ${this.elementProps.borderColor.g}, ${this.elementProps.borderColor.b}), inset 0 0 0 ${this.elementProps.borderSize}px rgb(${this.elementProps.borderColor.r}, ${this.elementProps.borderColor.g}, ${this.elementProps.borderColor.b})`;
+                this.element.style.boxShadow = `0 0 0 ${this.guiObject.borderSize}px ${color(this.guiObject.borderColor)}, inset 0 0 0 ${this.guiObject.borderSize}px ${color(this.guiObject.borderColor)}`;
                 break;
         };
 
-        this.element.style.transform = `rotate(${this.elementProps.rotation}deg) translate(${this.elementProps.anchordPoint.x * 100}%, ${this.elementProps.anchordPoint.y * 100}%)`;
+        this.element.style.backgroundColor = color(this.guiObject.backgroundColor);
+        this.element.style.transform = `rotate(${this.guiObject.rotation}deg) translate(${this.guiObject.anchordPoint.x * 100}%, ${this.guiObject.anchordPoint.y * 100}%)`;
         this.element.style.position = 'relative';
-        this.element.style.top = `calc(${this.elementProps.position.y.offset}px + ${this.elementProps.position.y.scale}%)`;
-        this.element.style.left = `calc(${this.elementProps.position.x.offset}px + ${this.elementProps.position.x.scale}%)`;
-        this.element.style.overflow = this.elementProps.clipsDescendants ? 'hidden' : 'visible';
-        this.element.style.height = `calc(${this.elementProps.size.y.offset}px + ${this.elementProps.size.y.scale}%)`;
-        this.element.style.width = `calc(${this.elementProps.size.x.offset}px + ${this.elementProps.size.x.scale}%)`;
-        this.element.style.zIndex = this.elementProps.zIndex as any;
+        this.element.style.top = udim(this.guiObject.position.y);
+        this.element.style.left = udim(this.guiObject.position.x);
+        this.element.style.overflow = this.guiObject.clipsDescendants ? 'hidden' : 'visible';
+        this.element.style.height = udim(this.guiObject.size.y);
+        this.element.style.width = udim(this.guiObject.size.x);
+        this.element.style.zIndex = this.guiObject.zIndex as any;
     };
 };

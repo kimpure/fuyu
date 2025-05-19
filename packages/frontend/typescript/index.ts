@@ -1,0 +1,5 @@
+import { GuiObjectElement } from "./element/guiObject.js";
+
+const a = new GuiObjectElement(JSON.parse(`{"active":false,"anchordPoint":{"x":0,"y":0},"backgroundColor":{"b":0,"g":0,"r":1},"backgroundTransparency":0,"borderColor":{"b":0,"g":0,"r":0},"borderMode":"Outline","borderSize":0,"clipsDescendants":false,"position":{"x":{"offset":0,"scale":0.012711863964796066},"y":{"offset":0,"scale":0.04435344785451889}},"size":{"x":{"offset":394,"scale":0},"y":{"offset":171,"scale":0}},"sizeConstraint":"RelativeXY","visible":true,"zIndex":1}`));
+a.applyStyle();
+a.render();

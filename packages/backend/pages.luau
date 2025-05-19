@@ -21,7 +21,7 @@ return {
         if string.match(request.path, '.css') then
             contentType = 'application/css'
         end
-
+        
         return {
             status = 200,
 			headers = {

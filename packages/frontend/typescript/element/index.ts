@@ -1,3 +1,5 @@
+export const renderElement = document.querySelector('.render') as HTMLDivElement;
+
 export class RbxElement {
     element: HTMLDivElement;
     childs: RbxElement[];
@@ -7,8 +9,7 @@ export class RbxElement {
         this.childs = [];
     };
 
-    withGuiObject() {
-        
+    render() {
+        renderElement.appendChild(this.element as Node);
     };
 };
-
